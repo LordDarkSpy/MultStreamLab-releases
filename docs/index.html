@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MultStreamLab</title>
+<meta name="description" content="Transmita para TikTok, Twitch e YouTube ao mesmo tempo, com chat unificado, alertas e doações por Pix. Leve, feito para quem joga e transmite no mesmo PC.">
+<link rel="icon" href="favicon.ico">
+<style>
+:root { color-scheme: dark; --bg:#0b0c0e; --card:#16181c; --line:#2a2d33; --text:#e8e9ec; --muted:#9a9ea8; --accent:#7c5cff; --accent2:#a48bff; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--accent2); }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+header { padding: 64px 0 40px; text-align: center; }
+.logo { width: 64px; height: 64px; border-radius: 16px; background: var(--accent); display: inline-grid; place-items: center; }
+h1 { font-size: clamp(32px, 6vw, 48px); margin: 16px 0 8px; letter-spacing: -0.02em; }
+.lead { color: var(--muted); font-size: 18px; max-width: 640px; margin: 0 auto 28px; }
+.buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.button { display: inline-block; padding: 12px 22px; border-radius: 10px; background: var(--accent); color: white; font-weight: 600; text-decoration: none; }
+.button.secondary { background: #22252b; color: var(--text); }
+.version { color: var(--muted); font-size: 13px; margin-top: 10px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 24px 0 48px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+.card h3 { margin: 0 0 6px; font-size: 16px; }
+.card p { margin: 0; color: var(--muted); font-size: 14px; }
+h2 { font-size: 22px; margin: 40px 0 0; }
+footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<header class="wrap">
+	<div class="logo" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+	<h1>MultStreamLab</h1>
+	<p class="lead">Transmita para TikTok, Twitch e YouTube ao mesmo tempo, com chat unificado, alertas e doações por Pix. Leve, feito para quem joga e transmite no mesmo PC.</p>
+	<div class="buttons">
+		<a class="button" id="download" href="https://github.com/LordDarkSpy/MultStreamLab-releases/releases/latest">Baixar para Windows</a>
+		<a class="button secondary" href="doar/">Apoiar o canal (Pix)</a>
+	</div>
+	<p class="version" id="version">Windows 10 e 11, 64 bits</p>
+</header>
+
+<main class="wrap">
+	<h2>O que ele faz</h2>
+	<div class="grid">
+		<div class="card"><h3>Dois formatos de uma vez</h3><p>Canvas 16:9 para Twitch e YouTube e 9:16 para o TikTok, com as mesmas cenas e um encode por formato.</p></div>
+		<div class="card"><h3>Chat unificado</h3><p>TikTok, Twitch e YouTube numa lista só, com overlay sobre o jogo, moderação e leitura em voz.</p></div>
+		<div class="card"><h3>Alertas e metas</h3><p>Seguidores, inscrições, presentes, Super Chats e Pix viram alertas com som, metas e ranking de apoiadores.</p></div>
+		<div class="card"><h3>Doações por Pix</h3><p>Página de doação com mensagem e som à escolha; o dinheiro cai direto na sua conta (Mercado Pago, Efí ou PagBank).</p></div>
+		<div class="card"><h3>Stream Deck e atalhos</h3><p>Atalhos globais e controle remoto compatível com o OBS: o plugin do Stream Deck, o Touch Portal e o Streamer.bot funcionam.</p></div>
+		<div class="card"><h3>Leve de verdade</h3><p>Motor do OBS sem a interface pesada: menos de 1% de CPU com a janela aberta e monitor de GPU e temperatura.</p></div>
+	</div>
+</main>
+
+<footer class="wrap">
+	MultStreamLab é software livre (GPL-2.0-or-later) e usa a libobs do OBS Studio.
+	O código-fonte de cada versão pode ser pedido em <a href="https://github.com/LordDarkSpy/MultStreamLab-releases/issues">Issues</a>.
+</footer>
+
+<script>
+// Link direto para o instalador da versão mais nova (sem precisar abrir a página de releases).
+fetch("https://api.github.com/repos/LordDarkSpy/MultStreamLab-releases/releases/latest")
+	.then((response) => (response.ok ? response.json() : null))
+	.then((release) => {
+		if (!release) return;
+		const asset = (release.assets || []).find((a) => /-setup\.exe$/.test(a.name));
+		if (asset) document.getElementById("download").href = asset.browser_download_url;
+		document.getElementById("version").textContent = `Versão ${release.tag_name.replace(/^v/, "")} · Windows 10 e 11, 64 bits`;
+	})
+	.catch(() => {});
+</script>
+</body>
+</html>

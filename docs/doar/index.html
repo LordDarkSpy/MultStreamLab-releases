@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doar por Pix</title>
+<link rel="icon" href="../favicon.ico">
+<meta name="robots" content="noindex">
+<style>
+:root { color-scheme: dark; --bg:#0b0c0e; --card:#16181c; --line:#2a2d33; --text:#e8e9ec; --muted:#9a9ea8; --accent:#7c5cff; }
+body { margin:0; min-height:100vh; display:grid; place-items:center; background:var(--bg); color:var(--text); font:16px/1.6 "Segoe UI", system-ui, sans-serif; padding:16px; box-sizing:border-box; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:28px; max-width:420px; text-align:center; }
+.muted { color:var(--muted); font-size:14px; }
+a { color:#a48bff; }
+</style>
+</head>
+<body>
+<div class="card">
+	<h1 style="font-size:22px;margin:0 0 8px">Doar por Pix</h1>
+	<p id="status" class="muted">Abrindo a página de doação...</p>
+	<p class="muted"><a href="../">MultStreamLab</a></p>
+</div>
+<script>
+// O servidor de doações roda no PC do streamer, atrás de um túnel cujo endereço muda a cada vez que
+// ele liga. O script que liga o túnel atualiza doar.json; aqui só confere se está no ar e redireciona.
+const status = document.getElementById("status");
+const offline = () => (status.textContent = "As doações estão desligadas agora. Tente de novo durante a live.");
+fetch("../doar.json?t=" + Date.now(), { cache: "no-store" })
+	.then((response) => response.json())
+	.then(async (target) => {
+		if (!target.url || !target.alias) return offline();
+		const controller = new AbortController();
+		setTimeout(() => controller.abort(), 6000);
+		const alive = await fetch(target.url + "/saude", { cache: "no-store", signal: controller.signal }).then((r) => r.ok).catch(() => false);
+		if (!alive) return offline();
+		location.replace(target.url + "/d/" + encodeURIComponent(target.alias));
+	})
+	.catch(offline);
+</script>
+</body>
+</html>
