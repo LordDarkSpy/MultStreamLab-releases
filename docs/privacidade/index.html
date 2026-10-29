@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de privacidade · MultStreamLab</title>
+<meta name="description" content="Como o MultStreamLab usa os dados das contas do YouTube, da Twitch e do TikTok e das doações por Pix.">
+<link rel="icon" href="../favicon.ico">
+<style>
+:root { color-scheme: dark; --bg:#0b0c0e; --card:#16181c; --line:#2a2d33; --text:#e8e9ec; --muted:#9a9ea8; --accent2:#a48bff; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.65 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--accent2); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 48px 16px 40px; }
+h1 { font-size: clamp(28px, 5vw, 38px); margin: 0 0 4px; letter-spacing: -0.02em; }
+h2 { font-size: 19px; margin: 32px 0 6px; }
+.muted { color: var(--muted); }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 600; }
+.box { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 14px 0; }
+footer { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 16px; color: var(--muted); font-size: 13px; }
+@media (max-width: 560px) { table, tbody, tr, td, th { display: block; } thead { display: none; } td { border: 0; padding: 2px 0; } tr { border-bottom: 1px solid var(--line); padding: 8px 0; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+	<p><a href="../">← MultStreamLab</a></p>
+	<h1>Política de privacidade</h1>
+	<p class="muted">Vigente desde 29 de outubro de 2026.</p>
+
+	<p>O MultStreamLab é um programa para Windows que transmite ao vivo para várias plataformas ao mesmo tempo. Ele roda no computador de quem faz a live. <strong>Não existe um servidor do MultStreamLab que receba os seus dados</strong>: tudo o que o app lê das suas contas fica no seu computador.</p>
+
+	<h2>Dados das contas que você conecta</h2>
+	<p>Você só conecta uma conta se quiser, pelo próprio app. Cada conexão pede só as permissões abaixo.</p>
+	<table>
+		<thead><tr><th>Conta</th><th>O que o app lê ou faz</th><th>Para quê</th></tr></thead>
+		<tbody>
+			<tr><td>YouTube (Google)</td><td>Nome e ID do seu canal; a sua transmissão ao vivo atual ou agendada; título, descrição e tags dessa transmissão; suspender ou banir alguém do chat da sua live quando você pede.</td><td>Mostrar a conta conectada, aplicar o título da live e moderar o chat.</td></tr>
+			<tr><td>Twitch</td><td>Nome da conta; título e categoria do canal; seguidores, inscrições e bits; enviar mensagens no chat; silenciar, banir e apagar mensagens quando você pede.</td><td>Alertas, metas, título da live, chat e moderação.</td></tr>
+			<tr><td>TikTok</td><td>Mensagens, presentes e seguidores da live (página pública da live). Se você entrar no TikTok dentro do app, o título da live.</td><td>Chat unificado, alertas e título da live.</td></tr>
+		</tbody>
+	</table>
+	<p>O app pede ao YouTube o escopo <code>https://www.googleapis.com/auth/youtube</code>, porque é o que a API do YouTube exige para alterar o título de uma transmissão e moderar o chat. O app não envia vídeos, não apaga vídeos, não lê suas mensagens privadas e não acessa outras contas do Google.</p>
+
+	<h2>Onde os dados ficam</h2>
+	<ul>
+		<li>As credenciais de acesso (tokens) e as chaves de transmissão ficam na pasta <code>%APPDATA%\MultStreamLab</code> do seu computador, criptografadas pelo Windows (DPAPI): só a sua conta do Windows consegue lê-las.</li>
+		<li>Os dados lidos das plataformas são usados na hora (na tela, nos alertas e nas métricas) e só ficam guardados no seu computador, como o histórico de lives.</li>
+		<li>Nenhum dado das suas contas é vendido, compartilhado com terceiros, usado para publicidade ou enviado ao desenvolvedor.</li>
+	</ul>
+
+	<div class="box">O uso e a transferência, para qualquer outro app, de informações recebidas das APIs do Google seguem a <a href="https://developers.google.com/terms/api-services-user-data-policy">Política de Dados do Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado.</div>
+
+	<h2>Serviços usados pelo app</h2>
+	<p>Ao conectar o YouTube, você também concorda com os <a href="https://www.youtube.com/t/terms">Termos de Serviço do YouTube</a>; os dados do Google seguem a <a href="https://policies.google.com/privacy">Política de Privacidade do Google</a>. O app também se comunica com a Twitch, o TikTok, o GitHub (para verificar atualizações) e a AwesomeAPI (cotação do dólar e do euro, sem dados seus).</p>
+
+	<h2>Doações por Pix</h2>
+	<p>A página de doação roda no computador de quem faz a live, pelo servidor de doações do próprio app, e fica acessível pela internet por um túnel da Cloudflare só enquanto está ligada. Quem doa informa um nome, uma mensagem e o valor. Esses dados ficam guardados no computador de quem faz a live, para mostrar o alerta. O pagamento é feito direto na conta do provedor escolhido por quem faz a live (Mercado Pago, Efí ou PagBank), que segue a própria política de privacidade. As credenciais desses provedores ficam criptografadas no mesmo computador.</p>
+
+	<h2>Como remover o acesso e apagar os dados</h2>
+	<ul>
+		<li>No app, use "Desconectar" na conta. Isso apaga o token salvo.</li>
+		<li>Para revogar o acesso do lado do Google, acesse <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>; na Twitch, Configurações &gt; Conexões.</li>
+		<li>Para apagar tudo, feche o app e apague a pasta <code>%APPDATA%\MultStreamLab</code>.</li>
+	</ul>
+
+	<h2>Contato</h2>
+	<p>Dúvidas ou pedidos sobre esta política: abra uma issue em <a href="https://github.com/LordDarkSpy/MultStreamLab-releases/issues">github.com/LordDarkSpy/MultStreamLab-releases/issues</a>. Se esta política mudar, a nova versão será publicada nesta página com a data atualizada.</p>
+
+	<footer>MultStreamLab é software livre (GPL-2.0-or-later).</footer>
+</main>
+</body>
+</html>
